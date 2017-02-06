@@ -1,0 +1,382 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="{% static 'css/freelancer.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">{{myself.first_name}} {{myself.last_name}}</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#photo">Photo</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Portfolio</a>
+                    </li>
+                    
+                    <li class="page-scroll">
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="{% static 'img/image.png' %}" alt="">
+                    <div class="intro-text">
+                        <span class="name">
+                            <body>
+                                <script type="text/javascript">
+                                    var d = new Date();
+                                    var time = d.getHours();
+
+                                    if (time < 12 && time > 3) {
+                                        document.write("<b>Good morning!</b>");
+                                    }
+                                    else if (time < 19 && time >= 12) {
+                                        document.write("<b>Good afternoon!</b>");
+                                    }
+                                    else {
+                                        document.write("<b>Good evening!</b>");
+                                    }
+                                </script>
+                            </body>
+
+                     
+                        </span>
+                        <span class="skills">Welcome to {{myself.first_name}}'s website </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About Me</h2>
+
+                    <p><img class="img-responsive" src="{% static 'img/myself.jpg' %}" alt="" align="right">
+                        <br/><br/><br/>{{myself.description.0}}
+                        <br/><br/>{{myself.description.1}}<p>
+                    <br/>
+
+                </div>
+            </div>
+            <div class="row">
+  
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="#myRsume" class="btn btn-lg btn-outline" data-toggle="modal">
+                        My Resume
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="beauty" id="photo">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                <h2>My Photoes</h2>
+                </div>
+            </div>
+            <div class="row">
+  
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p></p>
+                    <a href="#myPhoto" class="btn btn-lg btn-outline" data-toggle="modal">
+                        My Photo
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Fun Project</h2>
+                    <br/><br/><br/>
+                </div>
+            </div>
+        {% for project in object %}
+
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal{{project.index}}" class="portfolio-link" data-toggle="modal">
+                        <p class="project_name">{{project.project_title}}</p>
+                        <script type="text/javascript">
+
+                                    var d = {{project.index}};
+                                    document.write(typeof(d));
+                                    document.write('<img src="/static/img/project' + d + '.png" + " class="img-responsive" alt="">');
+                        </script>
+                       
+                        <p class="description">{{project.intro}}</p>
+
+                    </a>
+                </div>
+        {% endfor %}
+            
+
+            
+        </div>
+    </section>
+
+
+
+
+
+   
+
+
+    <!-- Contact Section -->
+    <section class="connection" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Contact Me</h2>
+                    <br/><br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <table>
+                      <tr>
+                        <td>&#9742;: {{myself.phone}}</td>
+                      </tr>
+                      <tr>
+                        <td><img class="git" src="{% static 'img/GitHub.png' %}" alt="" align="left"> : 
+                        <a href="https://github.com/L21">{{myself.git_hub}}</a></td>
+                      </tr>
+                      <tr>
+                        <td>&#9993; <a href="mailto:nickymiantiao@gmail.com?Subject=Greetings!">{{myself.email}}</a></td>
+                      </tr>
+                      <tr>
+                        <td>
+                            <img class="git" src="{% static 'img/website.jpg' %}" alt="" align="left"> : 
+                            <a href="http://mingyewang.cc">mingyewang.cc</a></td>
+                      </tr> 
+                    </table>         
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; by {{myself.first_name}} 2017
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+    {% for project in object %}
+    <div class="portfolio-modal modal fade" id="portfolioModal{{project.index}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>{{project.project_title}}</h2>
+                            <p class="description">{{project.intro}}</p>
+                            <ul>
+                                {% for de in project.description %}
+                                    <li class="project_description">{{de}}</li>
+                                {% endfor %}
+
+                            </ul>
+
+                            <script type="text/javascript">
+                                    var d = {{project.index}};
+                                    if (d == 2){
+                                        document.write('<br/><br/><center><iframe width="500" height="400" src="https://www.youtube.com/embed/UWxv8dZce0w"></iframe></center>');
+                                    }
+                                    
+                                    
+                            </script>
+
+                            <center><a class="btn btn-default" href="{{project.url}}"><i class="fa fa-times"></i>Github Link</a></center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+
+
+
+    <div class="portfolio-modal modal fade" id="myRsume" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>My Resume</h2>
+                            
+                            <center><object data="{% static 'img/Resume.pdf' %}" width="850px" height="1000px"></object></center>
+                            
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        
+    </div>
+
+    <div class="portfolio-modal modal fade" id="myPhoto" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <div class="w3-content w3-display-container">
+                                <script type="text/javascript">
+                                    var i;
+                                    for (i = 1; i < 21; i++) {
+                                        document.write('<img class="mySlides" src="/static/img/photoes/' + i + '.jpg"  style="width:100%">');
+                                    }
+                                </script>
+
+                              <a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+                              <a class="w3-btn-floating w3-display-right" onclick="plusDivs(1)">&#10095;</a>
+                            </div>
+
+                            <script>
+                            var slideIndex = 1;
+                            showDivs(slideIndex);
+
+                            function plusDivs(n) {
+                              showDivs(slideIndex += n);
+                            }
+
+                            function showDivs(n) {
+                              var i;
+                              var x = document.getElementsByClassName("mySlides");
+                              if (n > x.length) {slideIndex = 1}    
+                              if (n < 1) {slideIndex = x.length}
+                              for (i = 0; i < x.length; i++) {
+                                 x[i].style.display = "none";  
+                              }
+                              x[slideIndex-1].style.display = "block";  
+                            }
+                            </script>
+                            
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        
+    </div>
+    <script>
+
+ 
+
+    </script>
+    <!-- jQuery -->
+    <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{% static 'js/freelancer.js' %}"></script>
+
+</body>
+
+</html>
